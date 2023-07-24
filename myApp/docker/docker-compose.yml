@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pwdManagement'
+      MYSQL_DATABASE: 'app_management'
+      MYSQL_USER: 'userManagement'
+      MYSQL_PASSWORD: 'pwdManagement'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306" 
+    volumes:
+      - my-db:/var/lib/mysql    
+    networks:
+      - myAppNetwork
+volumes:
+  my-db:
+networks:
+  myAppNetwork:
+    driver: bridge
